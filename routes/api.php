@@ -27,24 +27,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/clinicSchedule", [ClinicScheduleController::class, "index"]);
 Route::post("/clinicSchedule", [ClinicScheduleController::class, "store"]);
 
-Route::get("/appointment/{name}", [AppointmentController::class, "index"]);
-Route::post("/appointment/{name}", [AppointmentController::class, "store"]);
+Route::get("/appointment/{name}", [AppointmentController::class, "index"])->whereAlpha('name');
+Route::post("/appointment/{name}", [AppointmentController::class, "store"])->whereAlpha('name');
 
 Route::post("/patient", [PatientController::class, "store"]);
 
 
-Route::post("/appointment/{appointment_id}/visit", [VisitController::class, "store"]);
+Route::post("/appointment/{appointment_id}/visit", [VisitController::class, "store"])->whereNumber('appointment_id');
 
-Route::get("/appointment/{appointment_id}/visit/getReceipt", [VisitController::class, "index"]);
+Route::get("/appointment/{appointment_id}/visit/getReceipt", [VisitController::class, "index"])->whereNumber('appointment_id');;
 
 
 Route::post("/procedure", [ProcedureController::class, "store"]);
 Route::get("/procedure", [ProcedureController::class, "index"]);
 
-Route::post("/appointment/{appointment_id}/visit/addProcedure", [ServeController::class, "store"]);
+Route::post("/appointment/{appointment_id}/visit/addProcedure", [ServeController::class, "store"])->whereNumber('appointment_id');;
 
-Route::post("/appointment/{appointment_id}/visit/doctorAssessment", [DoctorAssessmentController::class, "store"]);
-Route::get("/appointment/{appointment_id}/visit/doctorAssessment", [DoctorAssessmentController::class, "index"]);
+Route::post("/appointment/{appointment_id}/visit/doctorAssessment", [DoctorAssessmentController::class, "store"])->whereNumber('appointment_id');;
+Route::get("/appointment/{appointment_id}/visit/doctorAssessment", [DoctorAssessmentController::class, "index"])->whereNumber('appointment_id');;
 
 
 
