@@ -27,8 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/clinicSchedule", [ClinicScheduleController::class, "index"]);
 Route::post("/clinicSchedule", [ClinicScheduleController::class, "store"]);
 
-Route::get("/appointment/{name}", [AppointmentController::class, "index"])->whereAlpha('name');
-Route::post("/appointment/{name}", [AppointmentController::class, "store"])->whereAlpha('name');
+Route::get("/appointment/{name}", [AppointmentController::class, "index"]);
+Route::post("/appointment/{name}", [AppointmentController::class, "store"]);
 
 Route::post("/patient", [PatientController::class, "store"]);
 
